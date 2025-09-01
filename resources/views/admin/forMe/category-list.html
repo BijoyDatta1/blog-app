@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dashboard | UBold - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+
+    <!-- Plugins css -->
+    <link href="../assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    
+    <!-- App css -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+    <link href="../assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+
+    <link href="../assets/css/bootstrap-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled />
+    <link href="../assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" disabled />
+
+    <!-- icons -->
+    <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+
+    <div id="wrapper">
+
+        <!-- ✅ Topbar (unchanged except formatting) -->
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu float-right mb-0">
+                    <li class="dropdown d-none d-lg-inline-block">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen" href="#">
+                            <i class="fe-maximize noti-icon"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown notification-list topbar-dropdown">
+                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button">
+                            <img src="../assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
+                            <span class="pro-user-name ml-1">Geneva <i class="mdi mdi-chevron-down"></i></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown">
+                            <div class="dropdown-header noti-title"><h6 class="text-overflow m-0">Welcome !</h6></div>
+                            <a href="#" class="dropdown-item notify-item"><i class="fe-user"></i> <span>My Account</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item notify-item"><i class="fe-log-out"></i> <span>Logout</span></a>
+                        </div>
+                    </li>
+                    <li class="dropdown notification-list">
+                        <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light"><i class="fe-settings noti-icon"></i></a>
+                    </li>
+                </ul>
+                <div class="logo-box">
+                    <a href="index.html" class="logo logo-dark text-center">
+                        <span class="logo-sm"><img src="../assets/images/logo-sm.png" height="22"></span>
+                        <span class="logo-lg"><img src="../assets/images/logo-dark.png" height="20"></span>
+                    </a>
+                    <a href="index.html" class="logo logo-light text-center">
+                        <span class="logo-sm"><img src="../assets/images/logo-sm.png" height="22"></span>
+                        <span class="logo-lg"><img src="../assets/images/logo-light.png" height="20"></span>
+                    </a>
+                </div>
+                <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                    <li><button class="button-menu-mobile waves-effect waves-light"><i class="fe-menu"></i></button></li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- ✅ End Topbar -->
+
+        <!-- ✅ Left Sidebar -->
+        <div class="left-side-menu">
+            <div class="h-100" data-simplebar>
+                <div class="user-box text-center">
+                    <img src="../assets/images/users/user-1.jpg" alt="user-img" class="rounded-circle avatar-md">
+                    <div class="dropdown">
+                        <a href="#" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-toggle="dropdown">Geneva Kennedy</a>
+                        <div class="dropdown-menu user-pro-dropdown">
+                            <a href="#" class="dropdown-item notify-item"><i class="fe-user mr-1"></i> My Account</a>
+                            <a href="#" class="dropdown-item notify-item"><i class="fe-log-out mr-1"></i> Logout</a>
+                        </div>
+                    </div>
+                    <p class="text-muted">Admin Head</p>
+                </div>
+
+                <div id="sidebar-menu">
+                    <ul id="side-menu">
+                        <li class="menu-title">Navigation</li>
+                        <li>
+                            <a href="#sidebarDashboards" data-toggle="collapse">
+                                <i data-feather="airplay"></i><span> Dashboards </span>
+                            </a>
+                            <div class="collapse" id="sidebarDashboards">
+                                <ul class="nav-second-level">
+                                    <li><a href="index.html">Dashboard</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="menu-title mt-2">Apps</li>
+
+                        <!-- Category -->
+                        <li>
+                            <a href="#sidebarCategory" data-toggle="collapse">
+                                <i data-feather="folder"></i> <span> Category </span> <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarCategory">
+                                <ul class="nav-second-level">
+                                    <li><a href="category-create.html">Create Category</a></li>
+                                    <li><a href="category-manage.html">Manage Category</a></li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <!-- Blog -->
+                        <li>
+                            <a href="#sidebarBlog" data-toggle="collapse">
+                                <i data-feather="book"></i> <span> Blog </span> <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarBlog">
+                                <ul class="nav-second-level">
+                                    <li><a href="blog-create.html">Create Blog</a></li>
+                                    <li><a href="blog-manage.html">Manage Blog</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ✅ End Left Sidebar -->
+
+        <!-- ✅ Main Content -->
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid">
+
+                    <!-- Page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title">All Category</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- datatable -->
+                     
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Manage Category</h4>
+                                        <p class="text-muted font-13 mb-4">
+                                            DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction
+                                            function:
+                                            <code>$().DataTable();</code>.
+                                        </p>
+
+                                        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>NO</th>
+                                                    <th>Category Name</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+
+                </div>
+            </div>
+
+            <!-- ✅ Footer -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="">Coderthemes</a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="#">About Us</a>
+                                <a href="#">Help</a>
+                                <a href="#">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- ✅ End Main Content -->
+
+    </div><!-- /wrapper -->
+
+    <!-- ✅ Vendor & App JS -->
+    <script src="../assets/js/vendor.min.js"></script>
+    <script src="../assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="../assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/libs/selectize/js/standalone/selectize.min.js"></script>
+    <script src="../assets/js/pages/dashboard-1.init.js"></script>
+    <script src="../assets/js/app.min.js"></script>
+</body>
+</html>
