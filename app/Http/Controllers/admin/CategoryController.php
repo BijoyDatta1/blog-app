@@ -8,4 +8,13 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     //
+    public function categoryCreatePage()
+    {
+        return view('admin.pages.create-category');
+    }
+
+    public function categorylistpage()
+    {
+        return view('admin.pages.category-list');
+    }
 }
