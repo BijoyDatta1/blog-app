@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,12 @@ Route::get('/categorycreatepage', [CategoryController::class, "categoryCreatePag
 Route::get('/categorylistpage', [CategoryController::class, "categoryListPage"]);
 Route::get('/blogcreatepage', [BlogController::class, "blogCreatePage"]);
 Route::get('/bloglistpage', [BlogController::class, "blogListPage"]);
+
+//user login and auth page
+Route::get('/loginpage', [AuthController::class, "logInpage"]);
+Route::get('/registerpage', [AuthController::class, "registerPage"]);
+Route::get('/recoverPage', [AuthController::class, 'recoverPage']);
+
+Route::post('/registation', [AuthController::class, 'Registation']);
+Route::post('/login', [AuthController::class, 'logIn']);
+Route::post('/logout', [AuthController::class, 'logOut']);
