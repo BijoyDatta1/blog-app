@@ -8,7 +8,7 @@
                         <div class="card bg-pattern">
 
                             <div class="card-body p-4">
-                                
+
                                 <div class="text-center w-75 m-auto">
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
@@ -16,7 +16,7 @@
                                                 <img src="../assets/images/logo-dark.png" alt="" height="22">
                                             </span>
                                         </a>
-                    
+
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
                                                 <img src="../assets/images/logo-light.png" alt="" height="22">
@@ -29,12 +29,19 @@
                                 <form action="#">
 
                                     <div class="form-group">
-                                        <label for="fullname">Full Name</label>
-                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                        <label for="fastName">Full Fast Name</label>
+                                        <input class="form-control" type="text" id="fastName" placeholder="Enter your Fast Name" required>
                                     </div>
+
                                     <div class="form-group">
-                                        <label for="emailaddress">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
+                                        <label for="lastName">Full Name</label>
+                                        <input class="form-control" type="text" id="lastName" placeholder="Enter your Last name" required>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input class="form-control" type="email" id="email" required placeholder="Enter your email">
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
@@ -79,4 +86,4 @@
         <!-- end page -->
 
 @endsection
-        
+

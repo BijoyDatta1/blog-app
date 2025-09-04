@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Middleware\TokenVerification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,3 +40,6 @@ Route::get('/recoverPage', [AuthController::class, 'recoverPage']);
 Route::post('/registation', [AuthController::class, 'Registation']);
 Route::post('/login', [AuthController::class, 'logIn']);
 Route::post('/logout', [AuthController::class, 'logOut']);
+Route::post('/sendotp', [AuthController::class, 'sendOtp']);
+Route::post('/verifyotp', [AuthController::class, 'verifyOtp']);
+Route::post('/resetpassword', [AuthController::class, 'resetPassword'])->middleware(TokenVerification::class);
