@@ -24,18 +24,22 @@
                                             </span>
                                         </a>
                                     </div>
-                                    <p class="text-muted mb-4 mt-3">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                                    <p class="text-muted mb-4 mt-3">Change Password.</p>
                                 </div>
 
-                                <div class="div-from">
+                                <div class="div-form">
 
                                     <div class="form-group mb-3">
-                                        <label for="emailaddress">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                        <label for="password">Password</label>
+                                        <input class="form-control" type="password" id="password" required="" placeholder="Enter your Password">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="Cpassword">Confirm Password</label>
+                                        <input class="form-control" type="password" id="Cpassword" required="" placeholder="Enter your Confrim Password">
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
-                                        <button onclick="sendOtp()" class="btn btn-primary btn-block" type="submit"> Send OTP </button>
+                                        <button onclick="resetPassword()" class="btn btn-primary btn-block" type="submit">Submit</button>
                                     </div>
 
                                 </div>
@@ -46,7 +50,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p class="text-white-50">Back to <a href="auth-login.html" class="text-white ml-1"><b>Log in</b></a></p>
+                                <p class="text-white-50">Back to <a href="/loginpage" class="text-white ml-1"><b>Log in</b></a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
@@ -61,28 +65,35 @@
 
 @endsection
 <script >
-    async function sendOtp(){
-        let email = document.getElementById('emailaddress').value;
-        showLoader();
-        let res = await axios.post('/sendotp',{
-            email : email
-        });
-        hideLoader();
-        if(res.status === 200 && res.data['status'] === "success"){
-            sessionStorage.setItem('email',email);
-            successToast(res.data['message']);
-            setTimeout(function (){
-                window.location.href = "/otppage"
-            },1000);
-        } else{
-            let data = res.data.message;
-            if(typeof data === "object"){
-                for(let key in data){
-                    errorToast(data[key]);
+    async function resetPassword(){
+        let password = document.getElementById('password').value;
+        let Cpassword = document.getElementById('Cpassword').value;
+        if(password !== Cpassword){
+            errorToast('Password and Confirm Password Not Mach');
+        }else{
+            showLoader();
+            let res = await axios.post("/resetpassword",{
+                password : password
+            })
+            hideLoader();
+
+            if(res.status === 200 && res.data['status'] === "success"){
+                successToast(res.data['message']);
+                setTimeout(function (){
+                    window.location.href = "/loginpage"
+                },1000);
+            } else{
+                let data = res.data.message;
+                if(typeof data === "object"){
+                    for(let key in data){
+                        errorToast(data[key]);
+                    }
+                }else{
+                    errorToast(data);
                 }
-            }else{
-                errorToast(data);
             }
         }
+
+
     }
 </script>

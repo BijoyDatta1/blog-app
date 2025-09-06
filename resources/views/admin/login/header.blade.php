@@ -19,7 +19,13 @@
 
 		<!-- icons -->
 		<link href="{{url('backend/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{url('backend/css/app-loder.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+        <link href="{{url('backend/css/toastyfy.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
     </head>
 
+    <!-- Fullscreen Loader -->
+    <div id="loader-wrapper" class="loader-wrapper" style="display: none;">
+        <span class="loader"></span>
+    </div>
     <body class="authentication-bg authentication-bg-pattern">

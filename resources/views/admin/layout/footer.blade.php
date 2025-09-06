@@ -5,7 +5,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                                2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="">Coderthemes</a> 
+                                2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="">Coderthemes</a>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-right footer-links d-none d-sm-block">
@@ -181,6 +181,10 @@
 
         <!-- App js-->
         <script src="{{url('backend/js/app.min.js')}}"></script>
-        
-    </body>
+
+                <script  src="{{url('backend/js/axios.min.js')}}"></script>
+                <script  src="{{url('backend/js/toastity.min.js')}}"></script>
+                <script  src="{{url('backend/js/config.js')}}"></script>
+
+                </body>
 </html>

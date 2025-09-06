@@ -16,10 +16,11 @@ class TokenVerification
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (request()->cookie('token')) {
-            $token = request()->cookie('token');
+
+        if ($request->cookie('token')) {
+            $token = $request->cookie('token');
             $result = JWTToken::VerifyToken($token);
-            if ($result == "Unauthorize") {
+            if ($result === "Unauthorize") {
                 return redirect("/loginpage");
             }else{
                 $request->headers->set('email', $result->email);

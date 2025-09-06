@@ -8,25 +8,32 @@
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
     <link href="{{url('fontend/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url('fontend/css/templatemo-xtra-blog.css')}}" rel="stylesheet">
+    <link href="{{url('backend/css/app-loder.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+    <link href="{{url('backend/css/toastyfy.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 <!--
-    
+
 TemplateMo 553 Xtra Blog
 
 https://templatemo.com/tm-553-xtra-blog
 
 -->
 </head>
+    <!-- Fullscreen Loader -->
+    <div id="loader-wrapper" class="loader-wrapper" style="display: none;">
+        <span class="loader"></span>
+    </div>
 <body>
+
 	<header class="tm-header" id="tm-header">
         <div class="tm-header-wrapper">
             <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="tm-site-header">
-                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
+                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
                 <h1 class="text-center">Xtra Blog</h1>
             </div>
-            <nav class="tm-nav" id="tm-nav">            
+            <nav class="tm-nav" id="tm-nav">
                 <ul>
                     <li class="tm-nav-item active"><a href="/" class="tm-nav-link">
                         <i class="fas fa-home"></i>

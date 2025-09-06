@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\otp;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,6 +26,13 @@ class AuthController extends Controller
     {
         return view('admin.login.auth-recoverpw');
     }
+    public function OtpPage()
+    {
+        return view('admin.login.auth-otp');
+    }
+    public function resetPage(){
+        return view('admin.login.resetpassword');
+    }
     public function Registation(Request $req)
     {
         $validation = Validator::make($req->all(), [
@@ -38,7 +46,7 @@ class AuthController extends Controller
             return response()->json([
                 "status" => "failed",
                 "message" => $validation->errors()
-            ],400);
+            ]);
         }
 
         $user = User::create([
@@ -80,21 +88,21 @@ class AuthController extends Controller
                 'status' => "success",
                 "message" => "Login successfully!",
                 'token' => $token
-            ])->cookie($token);
+            ],200)->cookie('token', $token, 60);
         }else{
             return response()->json([
                 "status" => "failed",
-                "message" => "Login Failed!"
+                "message" => "Password or email is wrong!"
             ]);
         }
     }
 
-    public function logOut(){
-        if (cookie()->forget('token')) {
+    public function logOut(Request $request){
+        if ($request->hasCookie('token')) {
             return response()->json([
                 "status" => "success",
                 "message" => "Logged out successfully!"
-            ],200);
+            ],200)->withCookie(Cookie::forget('token'));
         }else{
             return response()->json([
                 "status" => "failed",
@@ -118,7 +126,9 @@ class AuthController extends Controller
         if($user){
             $otp = rand(10000, 99999);
             if (Mail::to($user->email)->send(new otp($otp))){
-                $user->otp = $otp;
+                $user->update([
+                    'otp' => $otp
+                ]);
                 return response()->json([
                     "status" => "success",
                     "message" => "OTP send successfully!"
@@ -134,9 +144,7 @@ class AuthController extends Controller
                 "status" => "failed",
                 "message" => "Email not registered!"
             ]);
-        }
-
-        //save in database
+        };
     }
 
 
@@ -150,15 +158,17 @@ class AuthController extends Controller
                 "message" => $validation->errors()
             ]);
         }
-        $user = User::where('email', $req->email)->where('otp',$req->user())->first();
+        $user = User::where('email', $req->email)->where('otp',$req->otp)->first();
         if($user){
-            $user->otp = 0;
+            $user->update([
+                'otp' => 0
+            ]);
             $token = JWTToken::CreateToke($user->id,$user->email,10);
             return response()->json([
                 "status" => "success",
                 "message" => "OTP send successfully!",
                 "token" => $token
-            ])->cookie($token);
+            ])->cookie('token', $token, 10);
         }else{
             return response()->json([
                 "status" => "failed",

@@ -31,7 +31,7 @@ class JWTToken
                 $decode = JWT::decode($token, new Key($key, 'HS256'));
                 return $decode;
             } else {
-                return 'Unauthorize';
+                return 'Unauthorize1';
             }
         } catch (Exception $e) {
             return 'Unauthorize';

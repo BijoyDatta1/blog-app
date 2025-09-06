@@ -26,20 +26,23 @@ Route::get('/contactpage', [HomeController::class, "contactPage"]);
 Route::get('/postpage', [HomeController::class, "postPage"]);
 
 //admin pages
-Route::get('/dashbordpage', [DashboardController::class, "dashbordPage"]);
-Route::get('/categorycreatepage', [CategoryController::class, "categoryCreatePage"]);
-Route::get('/categorylistpage', [CategoryController::class, "categoryListPage"]);
-Route::get('/blogcreatepage', [BlogController::class, "blogCreatePage"]);
-Route::get('/bloglistpage', [BlogController::class, "blogListPage"]);
+Route::get('/dashbordpage', [DashboardController::class, "dashbordPage"])->middleware(TokenVerification::class);
+Route::get('/categorycreatepage', [CategoryController::class, "categoryCreatePage"])->middleware(TokenVerification::class);
+Route::get('/categorylistpage', [CategoryController::class, "categoryListPage"])->middleware(TokenVerification::class);
+Route::get('/blogcreatepage', [BlogController::class, "blogCreatePage"])->middleware(TokenVerification::class);
+Route::get('/bloglistpage', [BlogController::class, "blogListPage"])->middleware(TokenVerification::class);
 
 //user login and auth page
 Route::get('/loginpage', [AuthController::class, "logInpage"]);
 Route::get('/registerpage', [AuthController::class, "registerPage"]);
-Route::get('/recoverPage', [AuthController::class, 'recoverPage']);
+Route::get('/recoverpage', [AuthController::class, 'recoverPage']);
+Route::get('/otppage', [AuthController::class, "OtpPage"]);
+Route::get('/resetpage', [AuthController::class, 'resetPage'])->middleware(TokenVerification::class);
+
 
 Route::post('/registation', [AuthController::class, 'Registation']);
 Route::post('/login', [AuthController::class, 'logIn']);
-Route::post('/logout', [AuthController::class, 'logOut']);
 Route::post('/sendotp', [AuthController::class, 'sendOtp']);
 Route::post('/verifyotp', [AuthController::class, 'verifyOtp']);
+Route::post('/logout', [AuthController::class, 'logOut'])->middleware(TokenVerification::class);
 Route::post('/resetpassword', [AuthController::class, 'resetPassword'])->middleware(TokenVerification::class);

@@ -26,7 +26,7 @@
                                     <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
                                 </div>
 
-                                <form action="#">
+                                <div class="form-div" >
 
                                     <div class="form-group">
                                         <label for="fastName">Full Fast Name</label>
@@ -61,10 +61,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group mb-0 text-center">
-                                        <button class="btn btn-success btn-block" type="submit"> Sign Up </button>
+                                        <button onclick="registetion()" class="btn btn-success btn-block" type="submit"> Sign Up </button>
                                     </div>
 
-                                </form>
+                                </div>
 
                             </div> <!-- end card-body -->
                         </div>
@@ -86,4 +86,38 @@
         <!-- end page -->
 
 @endsection
+
+<script>
+    async function registetion(){
+        let first_name = document.getElementById('fastName').value;
+        let last_name = document.getElementById('lastName').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+
+        showLoader();
+        let res = await axios.post('/registation',{
+            first_name: first_name,
+            last_name : last_name,
+            email : email,
+            password : password
+        });
+        hideLoader();
+
+        if(res.status === 200 && res.data['status'] === "success"){
+            setTimeout(function (){
+                successToast(res.data['message']);
+            },1000);
+        } else{
+            let data = res.data.message;
+            if(typeof data === "object"){
+                for(let key in data){
+                    errorToast(data[key]);
+                }
+            }else{
+                errorToast(data);
+            }
+        }
+    }
+
+</script>
 
