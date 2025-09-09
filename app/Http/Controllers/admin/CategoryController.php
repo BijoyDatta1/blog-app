@@ -54,11 +54,11 @@ class CategoryController extends Controller
     }
 
     public function CategoryList(Request $request){
-        $category = Category::all();
+        $category = Category::orderBy('id','DESC')->get();
         if($category){
             return response()->json([
                 "status" => "success",
-                "data" => $category
+                "category" => $category
             ]);
         }else{
             return response()->json([

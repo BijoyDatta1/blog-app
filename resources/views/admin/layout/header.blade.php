@@ -27,6 +27,14 @@
 
         <link href="{{url('backend/css/app-loder.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
         <link href="{{url('backend/css/toastyfy.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+        <link href="{{url('backend/css/datatable.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
+
+
+        {{--        all js file--}}
+
+
+
+
 
     </head>
 
@@ -434,6 +442,7 @@
                     }
                 }
             </script>
+
 
             <div class="content-page">
 

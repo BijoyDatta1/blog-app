@@ -5,7 +5,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                                2015 - <script>document.write(new Date().getFullYear())</script> &copy; UBold theme by <a href="">Coderthemes</a>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-right footer-links d-none d-sm-block">
@@ -164,27 +164,29 @@
 
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
+                <!-- Vendor js -->
+                <script src="{{url('backend/js/jquery.min.js')}}"></script>
+                <script src="{{url('backend/js/dataTables.min.js')}}"></script>
 
+                <!-- Vendor js -->
+                <script src="{{url('backend/js/vendor.min.js')}}"></script>
 
+                <!-- Plugins js-->
+                <script src="{{url('backend/libs/flatpickr/flatpickr.min.js')}}"></script>
+                <script src="{{url('backend/libs/apexcharts/apexcharts.min.js')}}"></script>
 
-        <!-- Vendor js -->
-        <script src="{{url('backend/js/vendor.min.js')}}"></script>
+                <script src="{{url('backend/libs/selectize/js/standalone/selectize.min.js')}}"></script>
 
-        <!-- Plugins js-->
-        <script src="{{url('backend/libs/flatpickr/flatpickr.min.js')}}"></script>
-        <script src="{{url('backend/libs/apexcharts/apexcharts.min.js')}}"></script>
+                <!-- Dashboar 1 init js-->
+                <script src="{{url('backend/js/pages/dashboard-1.init.js')}}"></script>
 
-        <script src="{{url('backend/libs/selectize/js/standalone/selectize.min.js')}}"></script>
-
-        <!-- Dashboar 1 init js-->
-        <script src="{{url('backend/js/pages/dashboard-1.init.js')}}"></script>
-
-        <!-- App js-->
-        <script src="{{url('backend/js/app.min.js')}}"></script>
+                <!-- App js-->
+                <script src="{{url('backend/js/app.min.js')}}"></script>
 
                 <script  src="{{url('backend/js/axios.min.js')}}"></script>
                 <script  src="{{url('backend/js/toastity.min.js')}}"></script>
                 <script  src="{{url('backend/js/config.js')}}"></script>
+
 
                 </body>
 </html>
