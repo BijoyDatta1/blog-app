@@ -1,5 +1,6 @@
 @extends('admin.layout.main')
 @section('main-section')
+
     <div class="content">
                 <div class="container-fluid">
 
@@ -41,13 +42,39 @@
 
                 </div>
             </div>
-@endsection
+
 
 <script >
 
     window.onload = function (){
         getList();
     };
+
+    async function statusUpdate(id, status){
+        showLoader();
+        let res = await  axios.post('/categorystatus',{
+            id : id,
+            status : status
+        });
+        hideLoader();
+
+        if (res.status === 200 && res.data['status'] === "success") {
+            successToast(res.data['message']);
+            setTimeout(function () {
+                getList();
+            }, 1000);
+        } else {
+            let data = res.data.message;
+            if (typeof data === "object") {
+                for (let key in data) {
+                    errorToast(data[key]);
+                }
+            } else {
+                errorToast(data);
+            }
+        }
+
+    }
 
 
 
@@ -64,18 +91,24 @@
         let tableList = $("#tableList");
 
         //DataTable(),empty() and destroy() fucntion from jqurey Data Table plagin. those function fast distroy the table and then empty the table
-        tableList.empty();
 
+        tableList.empty();
 
         if(res.status === 200 && res.data['status'] === "success"){
             res.data.category.forEach(function (item, index){
+                let badge = item['status'] == "active" ? "badge badge-success" : "badge badge-danger";
+                let button = item['status'] == "active"
+                    ? `<button type="button" data-id="${item['id']}" data-status ="inactive" class="btn StatusButton btn-warning">Inactive</button>`
+                    : `<button type="button" data-id="${item['id']}" data-status ="active" class="btn StatusButton btn-success">Active</button>`;
                 let row = `<tr>
                     <td>${index + 1}</td>
                     <td>${item['category_name']}</td>
                     <td>${item['category_slug']}</td>
-                    <td>${item['status']}</td>
+                    <td><span class="${badge}">${item['status']}</span></td>
                     <td>
-
+                        <button type="button" data-id="${item['id']}" class="btn EditButton btn-success">Edit</button>
+                        <button type="button" data-id="${item['id']}" class="btn DeleteButton btn-danger">Delete</button>
+                        ${button}
                     </td>
                 </tr>`
 
@@ -93,15 +126,45 @@
                 errorToast(data);
             }
         }
+        let buttons = document.querySelectorAll('.EditButton');
+        buttons.forEach(function(button){
+            button.addEventListener("click", function (){
+                let id = this.getAttribute('data-id');
+                let modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+                modal.show();
+                updateData(id);
+            })
+        })
+
+        let DeleteButtons = document.querySelectorAll('.DeleteButton');
+        DeleteButtons.forEach(function(button){
+            button.addEventListener('click',function(){
+                let id = this.getAttribute('data-id');
+                let modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+                modal.show();
+                document.getElementById('deleteCategoryId').value = id
+            })
+        })
+
+        let StatusButton = document.querySelectorAll('.StatusButton');
+        StatusButton.forEach(function(button){
+            button.addEventListener('click',function (){
+                let id = this.getAttribute('data-id');
+                let status = this.getAttribute('data-status');
+                statusUpdate(id, status);
+            })
+        })
 
         // jqurey data table plagin
        let table = new DataTable('#tableData', {
             lengthMenu:[5,10,15,20,30]
         });
-
-
+        table.destroy();
 
 
     }
 </script>
+    @include('admin.pages.category-update')
+    @include('admin.pages.category-delete')
+@endsection
 

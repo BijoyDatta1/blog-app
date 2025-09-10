@@ -167,6 +167,8 @@
                 <!-- Vendor js -->
                 <script src="{{url('backend/js/jquery.min.js')}}"></script>
                 <script src="{{url('backend/js/dataTables.min.js')}}"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
                 <!-- Vendor js -->
                 <script src="{{url('backend/js/vendor.min.js')}}"></script>

@@ -32,8 +32,11 @@ Route::get('/dashbordpage', [DashboardController::class, "dashbordPage"])->middl
 //category
 Route::get('/categorycreatepage', [CategoryController::class, "categoryCreatePage"])->middleware(TokenVerification::class);
 Route::get('/categorylistpage', [CategoryController::class, "categoryListPage"])->middleware(TokenVerification::class);
+
+
 Route::post('/createcategory', [CategoryController::class, "CreateCategory"])->middleware(TokenVerification::class);
 Route::post('/categoryupdate', [CategoryController::class, "CategoryUpdate"])->middleware(TokenVerification::class);
+Route::post('/categorystatus', [CategoryController::class, "CategoryStatus"])->middleware(TokenVerification::class);
 Route::post('/categorydelete', [CategoryController::class, "CategoryDelete"])->middleware(TokenVerification::class);
 Route::get('/categorylist', [CategoryController::class, "CategoryList"])->middleware(TokenVerification::class);
 Route::post('/categoryitem', [CategoryController::class, "CategoryItem"])->middleware(TokenVerification::class);

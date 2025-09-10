@@ -30,6 +30,8 @@
         <link href="{{url('backend/css/datatable.min.css')}}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
 
+
+
         {{--        all js file--}}
 
 

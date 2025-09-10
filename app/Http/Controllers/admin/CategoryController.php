@@ -93,11 +93,7 @@ class CategoryController extends Controller
                 "message" => $validation->errors()
             ]);
         }
-//        $updateCategory = Category::where('id', $request['id'])->update([
-//            'category_name' => $request['category_name'],
-////            'category_slug' => $request['category_slug'],
-//            'status' => $request['status'],
-//        ]);
+
         $updateCategory = Category::find($request['id']);
         $updateCategory->category_name = $request['category_name'];
         $updateCategory->status = $request['status'];
@@ -131,7 +127,24 @@ class CategoryController extends Controller
             ]);
         }
     }
-//    public function CategoryStatus(Request $request){
-//
-//    }
+    public function CategoryStatus(Request $request){
+        try {
+            $update = Category::find($request['id']);
+            $update->status = $request['status'];
+            $status = $update->save();
+            if($status){
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Category status Changed successfully!"
+                ],200);
+            }
+
+        }catch(\Exception $e){
+            return response()->json([
+                "status" => "failed",
+                "message" => "Something went wrong!"
+            ]);
+        }
+
+    }
 }
