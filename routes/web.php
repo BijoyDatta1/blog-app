@@ -44,6 +44,12 @@ Route::post('/categoryitem', [CategoryController::class, "CategoryItem"])->middl
 //blog
 Route::get('/blogcreatepage', [BlogController::class, "blogCreatePage"])->middleware(TokenVerification::class);
 Route::get('/bloglistpage', [BlogController::class, "blogListPage"])->middleware(TokenVerification::class);
+Route::post('/createblog', [BlogController::class, "createBlog"])->middleware(TokenVerification::class);
+Route::get('/getbloglist', [BlogController::class, "getBlogList"])->middleware(TokenVerification::class);
+Route::post('/getblogitem', [BlogController::class, "getBlogItem"])->middleware(TokenVerification::class);
+Route::post('/updateblog', [BlogController::class, "updateBlog"])->middleware(TokenVerification::class);
+Route::post('/deleteblog', [BlogController::class, "deleteBlog"])->middleware(TokenVerification::class);
+Route::post('/blogstatus', [BlogController::class, "blogStatus"])->middleware(TokenVerification::class);
 
 //user login and auth page
 Route::get('/loginpage', [AuthController::class, "logInpage"]);
