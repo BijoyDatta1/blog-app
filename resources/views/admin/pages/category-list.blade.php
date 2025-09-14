@@ -76,6 +76,7 @@
 
     }
 
+    let tableInstance = null;
 
 
     async function getList(){
@@ -86,12 +87,9 @@
 
 
 
-        //for use the jqurey dataTable id selected by jqurey
-        let tableData = $("#tableData");
-        let tableList = $("#tableList");
 
         //DataTable(),empty() and destroy() fucntion from jqurey Data Table plagin. those function fast distroy the table and then empty the table
-
+        let tableList = $("#tableList");
         tableList.empty();
 
         if(res.status === 200 && res.data['status'] === "success"){
@@ -155,11 +153,15 @@
             })
         })
 
+        // Destroy existing DataTable instance if already initialized
+        if (tableInstance) {
+            tableInstance.destroy();
+        }
+
         // jqurey data table plagin
-       let table = new DataTable('#tableData', {
+       let tableInstance  = new DataTable('#tableData', {
             lengthMenu:[5,10,15,20,30]
         });
-        table.destroy();
 
 
     }

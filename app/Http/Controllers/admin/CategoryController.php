@@ -59,7 +59,7 @@ class CategoryController extends Controller
             return response()->json([
                 "status" => "success",
                 "category" => $category
-            ]);
+            ], 200);
         }else{
             return response()->json([
                 "status" => "failed",

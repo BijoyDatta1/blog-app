@@ -25,12 +25,14 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png',
+            'image' => 'required',
             'status' => 'required',
             'display' => 'required',
             'category_id' => 'required|array',
             'category_id.*' => 'required|exists:categoris,id',
         ]);
+
+
 
         if ($validator->fails()) {
             return response()->json([
@@ -38,6 +40,7 @@ class BlogController extends Controller
                 'message' => $validator->errors()
             ]);
         }
+//        return response()->json(['data' => $request->all()]);
 
         DB::beginTransaction();
         try {
@@ -82,6 +85,11 @@ class BlogController extends Controller
                     ]);
                 }
 
+            }else{
+                return response()->json([
+                    'status' => "failed",
+                    'message' => "problem in image upload"
+                ]);
             }
 
         }catch (\Exception $e){
@@ -116,6 +124,7 @@ class BlogController extends Controller
     }
 
     public function updateBlog(Request $request){
+
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => 'required',
@@ -136,9 +145,11 @@ class BlogController extends Controller
             DB::beginTransaction();
 
             $blog = Blog::where('id',$request->id)->where('user_id', $request->header('id'))->first();
+
             if ($request->hasFile('image')) {
                 //delete old image
                 $old_image = $blog->image;
+
                 if($old_image && file_exists(public_path( $old_image))){
                     unlink(public_path($old_image));
                 }
