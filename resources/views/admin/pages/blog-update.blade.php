@@ -150,7 +150,7 @@
 
         let categorySelect = document.getElementById('category');
         let category_id = Array.from(categorySelect.selectedOptions).map(option => option.value);
-        let image  = document.getElementById('image').value;
+        let image  = document.getElementById('image').files[0];
 
         let formData = {
             id : id,

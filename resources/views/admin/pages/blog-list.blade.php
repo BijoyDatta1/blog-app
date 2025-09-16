@@ -48,6 +48,7 @@
                 </div>
             </div>
     @include("admin.pages.blog-update")
+    @include("admin.pages.blog-delete")
 @endsection
 <style>
     .BlogImag{
@@ -60,11 +61,37 @@
         getList();
     }
 
+    async function statusUpdate(id, status){
+        showLoader();
+        let res = await  axios.post('/blogstatus',{
+            id : id,
+            status : status
+        });
+        hideLoader();
+
+        if (res.status === 200 && res.data['status'] === "success") {
+            successToast(res.data['message']);
+            setTimeout(function () {
+                getList();
+            }, 1000);
+        } else {
+            let data = res.data.message;
+            if (typeof data === "object") {
+                for (let key in data) {
+                    errorToast(data[key]);
+                }
+            } else {
+                errorToast(data);
+            }
+        }
+
+    }
+
+
     async function getList(){
         showLoader();
         let res = await axios.get('/getbloglist');
         hideLoader();
-
 
 
         //for use the jqurey dataTable id selected by jqurey
@@ -118,25 +145,25 @@
                 updateData(id);
             })
         })
-        //
-        // let DeleteButtons = document.querySelectorAll('.DeleteButton');
-        // DeleteButtons.forEach(function(button){
-        //     button.addEventListener('click',function(){
-        //         let id = this.getAttribute('data-id');
-        //         let modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
-        //         modal.show();
-        //         document.getElementById('deleteCategoryId').value = id
-        //     })
-        // })
-        //
-        // let StatusButton = document.querySelectorAll('.StatusButton');
-        // StatusButton.forEach(function(button){
-        //     button.addEventListener('click',function (){
-        //         let id = this.getAttribute('data-id');
-        //         let status = this.getAttribute('data-status');
-        //         statusUpdate(id, status);
-        //     })
-        // })
+
+        let DeleteButtons = document.querySelectorAll('.DeleteButton');
+        DeleteButtons.forEach(function(button){
+            button.addEventListener('click',function(){
+                let id = this.getAttribute('data-id');
+                let modal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+                modal.show();
+                document.getElementById('deleteCategoryId').value = id
+            })
+        })
+
+        let StatusButton = document.querySelectorAll('.StatusButton');
+        StatusButton.forEach(function(button){
+            button.addEventListener('click',function (){
+                let id = this.getAttribute('data-id');
+                let status = this.getAttribute('data-status');
+                statusUpdate(id, status);
+            })
+        })
 
         // jqurey data table plagin
         let table = new DataTable('#tableData', {

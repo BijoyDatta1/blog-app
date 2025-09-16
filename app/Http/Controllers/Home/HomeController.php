@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\BlogCategoris;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -32,5 +34,23 @@ class HomeController extends Controller
     public function postPage()
     {
         return view('fontend.pages.post');
+    }
+
+    public function getPost(Request $request){
+
+        $page = $request->get('page', 1);
+        $query = $request->get('query', '');
+
+        $blog = Blog::with(['user','categories'])->when($query,function($q) use ($query){
+            $q->where('title','like','%'.$query.'%')->orWhere("description","like","%$query%");
+        })->paginate(4);
+
+        if($blog){
+           return response()->json([
+                'status'=> "success",
+                'blog' => $blog,
+            ],200);
+        }
+
     }
 }

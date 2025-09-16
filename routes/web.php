@@ -24,6 +24,8 @@ Route::get('/', [HomeController::class, "homePage"]);
 Route::get('/aboutpage', [HomeController::class, "aboutPage"]);
 Route::get('/contactpage', [HomeController::class, "contactPage"]);
 Route::get('/postpage', [HomeController::class, "postPage"]);
+Route::get('/getpost', [HomeController::class, "getPost"]);
+
 
 //all admin pages all route
 //dashboar

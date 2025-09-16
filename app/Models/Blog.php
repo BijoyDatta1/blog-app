@@ -24,8 +24,17 @@ class Blog extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function blogCategoris(){
-        return $this->belongsToMany(BlogCategoris::class);
+//    public function blogCategoris(){
+//        return $this->belongsToMany(BlogCategoris::class);
+//    }
+
+    public function categories(){
+        return $this->belongsToMany(
+            Category::class,        // the related model
+            'blog_categoris',       // pivot table
+            'blog_id',              // foreign key on pivot table for this model
+            'category_id'           // foreign key on pivot table for related model
+        );
     }
     protected static function boot(){
         parent::boot();
