@@ -23,7 +23,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "homePage"]);
 Route::get('/aboutpage', [HomeController::class, "aboutPage"]);
 Route::get('/contactpage', [HomeController::class, "contactPage"]);
-Route::get('/postpage', [HomeController::class, "postPage"]);
+Route::get('/postpage/{id}', [HomeController::class, "postPage"]);
+Route::post('/postpagedata', [HomeController::class, "getPostItem"]);
 Route::get('/getpost', [HomeController::class, "getPost"]);
 
 

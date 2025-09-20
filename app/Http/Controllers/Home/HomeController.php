@@ -31,9 +31,20 @@ class HomeController extends Controller
         return view('fontend.pages.contact');
     }
 
-    public function postPage()
+    public function postPage($id)
     {
-        return view('fontend.pages.post');
+        return view('fontend.pages.post',compact('id'));
+    }
+    public function getPostItem(Request $request){
+        $blog = Blog::where('id',$request->id)->with(['user', 'categories'])->first();
+        $categoryBlog = BlogCategoris::where('blog_id',$request->id)->get();
+        if ($blog) {
+            return response()->json([
+                'status' => "success",
+                'data' => $blog,
+                "blogCategoris" => $categoryBlog
+            ],200);
+        }
     }
 
     public function getPost(Request $request){

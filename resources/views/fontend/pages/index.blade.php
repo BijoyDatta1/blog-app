@@ -5,12 +5,12 @@
             <!-- Search area -->
             <div class="row tm-row">
                 <div class="col-12">
-                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
-                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
-                        <button class="tm-search-button" type="submit">
+                    <div class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" id="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit" onclick="search()">
                             <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
             <div class="row tm-row" id="postBody">
@@ -21,8 +21,8 @@
             {{--pagination area--}}
             <div class="row tm-row tm-mt-100 tm-mb-75">
                 <div class="tm-prev-next-wrapper">
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                    <button class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20" onclick="prevPage()">Prev</button>
+                    <button class="mb-2 tm-btn tm-btn-primary tm-prev-next" onclick="nextPage()">Next</button>
                 </div>
                 <div class="tm-paging-wrapper">
                     <span class="d-inline-block mr-3">Page</span>
@@ -48,12 +48,15 @@
 @endsection
 <script >
     let currentPage = 1;
+    // console.log(currentPage);
+    let query = ""
 
     window.onload = ()=>{
         getPost();
     }
 
     async function getPost(page = 1, query =""){
+        // console.log(currentPage);
         let postConteiner = document.getElementById('postBody');
         postConteiner.innerHTML = "";
         showLoader();
@@ -66,7 +69,7 @@
                 let post = `
                         <article class="col-12 col-md-6 tm-post">
                             <hr class="tm-hr-primary">
-                            <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                            <a href="/postpage/${item['id']}" class="effect-lily tm-post-link tm-pt-60">
                                 <div class="tm-post-link-inner">
                                     <img src="${item['image']}" alt="Image" class="img-fluid">
                                 </div>
@@ -125,7 +128,7 @@
 
         for(let i = 1; i <= paginationData.last_page; i++){
             paginationContiner.innerHTML += `<li class="tm-paging-item ${paginationData.current_page == i ? 'active' : ''}">
-                                <a href="#" onclick="changePage(${i})" class="mb-2 tm-btn tm-paging-link">${i}</a>
+                                <a data-page="${i}" onclick="changePage(${i})" class="mb-2 tm-btn tm-paging-link numBar">${i}</a>
                             </li>`
         }
     }
@@ -134,6 +137,27 @@
         currentPage = page
         getPost(currentPage);
     }
+
+    function nextPage(){
+        let totalPage =  document.querySelectorAll('.numBar');
+        if(currentPage < totalPage.length+1){
+             currentPage++;
+            getPost(currentPage);
+        }
+    }
+    function prevPage(){
+        if(currentPage >= 1){
+            currentPage--;
+            getPost(currentPage);
+        }
+    }
+
+    function search(){
+        query = document.getElementById('query').value.trim();
+        currentPage = 1;
+         getPost(currentPage,query);
+    }
+
 
 </script>
 

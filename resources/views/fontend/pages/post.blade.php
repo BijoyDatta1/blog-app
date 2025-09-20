@@ -6,48 +6,44 @@
             <!-- Search form -->
             <div class="row tm-row">
                 <div class="col-12">
-                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">                
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
                         <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
                         <button class="tm-search-button" type="submit">
                             <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
-                        </button>                                
+                        </button>
                     </form>
-                </div>                
-            </div>            
+                </div>
+            </div>
             <div class="row tm-row">
                 <div class="col-12">
                     <hr class="tm-hr-primary tm-mb-55">
                     <!-- Video player 1422x800 -->
-                    <video width="954" height="535" controls class="tm-mb-40">
-                        <source src="{{url('fontend/video/wheat-field.mp4')}}" type="video/mp4">							  
-                        Your browser does not support the video tag.
-                    </video>
+                    <img id="image" src="{{url('/backend/images/default.jpg')}}" width="954" height="535">
+
                 </div>
             </div>
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
-                    <div class="tm-post-full">                    
+                    <div class="tm-post-full">
                         <div class="mb-4">
-                            <h2 class="pt-2 tm-color-primary tm-post-title">Single Post of Xtra Blog HTML Template</h2>
-                            <p class="tm-mb-40">June 16, 2020 posted by Admin Nat</p>
-                            <p>
+                            <h2 class="pt-2 tm-color-primary tm-post-title" id="title">Single Post of Xtra Blog HTML Template</h2>
+                            <p class="tm-mb-40">
+                                <span id="date">June 16, 2020</span>
+                                 posted by
+                                <span id="author">Admin Nat</span>
+                            </p>
+                            <p id="description">
                                 This is a description of the video post. You can also have an image instead of
-                                the video. You can free download 
-                                <a rel="nofollow" href="https://templatemo.com/tm-553-xtra-blog" target="_blank">Xtra Blog Template</a> 
+                                the video. You can free download
+                                <a rel="nofollow" href="https://templatemo.com/tm-553-xtra-blog" target="_blank">Xtra Blog Template</a>
                                 from TemplateMo website. Phasellus maximus quis est sit amet maximus. Vestibulum vel rutrum
                                 lorem, ac sodales augue. Aliquam erat volutpat. Duis lectus orci, blandit in arcu
                                 est, elementum tincidunt lectus. Praesent vel justo tempor, varius lacus a,
                         pharetra lacus. </p>
-                            <p>
-                                Duis pretium efficitur nunc. Mauris vehicula nibh nisi. Curabitur gravida neque
-                                dignissim, aliquet nulla sed, condimentum nulla. Pellentesque id venenatis
-                                quam, id cursus velit. Fusce semper tortor ac metus iaculis varius. Praesent
-                                aliquam ex vel lectus ornare tristique. Nunc et eros quis enim feugiat tincidunt
-                                et vitae dui.
-                            </p>
-                            <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>
+
+                            <span class="d-block text-right tm-color-primary categoryName">Creative . Design . Business</span>
                         </div>
-                        
+
                         <!-- Comments -->
                         <div>
                             <h2 class="tm-color-primary tm-post-title">Comments</h2>
@@ -61,28 +57,28 @@
                                     <p>
                                         Praesent aliquam ex vel lectus ornare tritique. Nunc et eros
                                         quis enim feugiat tincidunt et vitae dui. Nullam consectetur
-                                        justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus 
+                                        justo ac ex laoreet rhoncus. Nunc id leo pretium, faucibus
                                         sapien vel, euismod turpis.
                                     </p>
                                     <div class="d-flex justify-content-between">
                                         <a href="#" class="tm-color-primary">REPLY</a>
                                         <span class="tm-color-primary">June 14, 2020</span>
-                                    </div>                                                 
-                                </div>                                
+                                    </div>
+                                </div>
                             </div>
                             <div class="tm-comment-reply tm-mb-45">
                                 <hr>
                                 <div class="tm-comment">
                                     <figure class="tm-comment-figure">
                                         <img src="{{url('fontend/img/comment-2.jpg')}}" alt="Image" class="mb-2 rounded-circle img-thumbnail">
-                                        <figcaption class="tm-color-primary text-center">Jewel Soft</figcaption>    
+                                        <figcaption class="tm-color-primary text-center">Jewel Soft</figcaption>
                                     </figure>
                                     <p>
                                         Nunc et eros quis enim feugiat tincidunt et vitae dui.
                                         Nullam consectetur justo ac ex laoreet rhoncus. Nunc
                                         id leo pretium, faucibus sapien vel, euismod turpis.
                                     </p>
-                                </div>                                
+                                </div>
                                 <span class="d-block text-right tm-color-primary">June 21, 2020</span>
                             </div>
                             <form action="" class="mb-5 tm-comment-form">
@@ -97,9 +93,9 @@
                                     <textarea class="form-control" name="message" rows="6"></textarea>
                                 </div>
                                 <div class="text-right">
-                                    <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>                        
-                                </div>                                
-                            </form>                          
+                                    <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -135,7 +131,7 @@
                                 <figcaption class="tm-color-primary">Nam lobortis nunc sed faucibus commodo</figcaption>
                             </figure>
                         </a>
-                    </div>                    
+                    </div>
                 </aside>
             </div>
             <footer class="row tm-row">
@@ -149,3 +145,42 @@
         </main>
     </div>
 @endsection
+<script >
+    let id = {{$id}};
+    window.onload = ()=>{
+        getData();
+    }
+
+    async function getData(){
+        showLoader()
+        let res = await axios.post('/postpagedata',{
+            id : id
+        })
+        hideLoader()
+        // console.log(res.data.data.categories)
+        // return;
+
+        if(res.status === 200 && res.data['status'] === "success"){
+            document.getElementById("image").src = res.data.data['image'];
+            document.getElementById("title").innerText = res.data.data['title'];
+            document.getElementById("description").innerText = res.data.data['description'];
+            let date = new Date(res.data.data["created_at"]);
+            document.getElementById('date').innerText = date.toLocaleDateString();
+            document.getElementById('author').innerText = res.data.data["user"]["first_name"];
+
+            let allCategory = res.data.data.categories;
+            let categorySpan = document.querySelector('.categoryName');
+            categorySpan.innerHTML =""
+            for(let i = 0 ; i < allCategory.length; i++ ){
+                categorySpan.innerHTML += allCategory[i]['category_name']
+                if( i < allCategory.length-1){
+                    categorySpan.innerHTML += ". "
+                }
+                console.log(allCategory[i]['category_name'])
+            }
+            // console.log(categorySpan)
+            // return;
+
+        }
+    }
+</script>
